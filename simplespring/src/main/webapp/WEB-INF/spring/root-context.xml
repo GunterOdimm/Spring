@@ -2,7 +2,33 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
+ 	<bean id="calc1" class="study.spring.hellospring.vo.Calc1"></bean>
+
+	<bean id="calc2" class="study.spring.hellospring.vo.Calc2">
+		<constructor-arg value="10" />
+		<constructor-arg value="20" />
+	</bean>
+	<bean id="value" class="study.spring.hellospring.vo.value">
+		<property name="x">
+			<value type="java.lang.Integer">100</value>
+		</property>
+		<property name="y">
+			<value type="java.lang.Integer">200</value>
+		</property>
+	</bean>
+	<bean id="calc3" class="study.spring.hellospring.vo.Calc3">
+		<constructor-arg ref="value" />
+	</bean>
+
+	<bean id="calc4" class="study.spring.hellospring.vo.Calc4" scope="singleton" init-method="init" />
+	
+	<bean id="professorService" class="study.spring.hellospring.service.impl.professorServiceimpl">
+		<qualifier value="professor"/>
+	</bean>
+	<bean id="studentService" class="study.spring.hellospring.service.impl.studentServiceimpl">
+		<qualifier value="student"/>
 		
+	</bean>
 </beans>
