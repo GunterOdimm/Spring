@@ -14,11 +14,11 @@ import study.spring.hellospring.service.impl.professorServiceimpl;
 @Slf4j
 @Controller
 public class SchoolController {
+	
 	@Autowired
-	@Qualifier("student")
+	@Qualifier("professor")
 	//aopa 객체의존성 주입 이게 있으면 일부러 번거롭게 다 바꿔줄 필요가 없다.
 	//뒤에 이름만 바꿔주면 다된다.
-	
 	private SchoolService schoolService;
 
 	@RequestMapping(value = "/service/school.do", method = RequestMethod.GET)
@@ -38,6 +38,7 @@ public class SchoolController {
 			viewPath = "service/professor";
 		} else {
 			viewPath = "service/student";
+			
 		}
 		return viewPath;
 	}

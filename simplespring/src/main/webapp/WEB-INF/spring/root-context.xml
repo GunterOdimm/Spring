@@ -24,6 +24,7 @@
 
 	<bean id="calc4" class="study.spring.hellospring.vo.Calc4" scope="singleton" init-method="init" />
 	
+	<!-- 이 작업을 해줌으로써 SchoolController 에서 @Qualifier("professor") 의 사용이 가능해진다. -->
 	<bean id="professorService" class="study.spring.hellospring.service.impl.professorServiceimpl">
 		<qualifier value="professor"/>
 	</bean>

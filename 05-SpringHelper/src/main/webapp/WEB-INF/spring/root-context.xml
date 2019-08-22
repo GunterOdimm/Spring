@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context" xmlns:cache="http://www.springframework.org/schema/cache" xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring" xmlns:p="http://www.springframework.org/schema/p" xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.3.xsd
+        http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+    <!-- WebHelper 싱글톤 객체 생성 -->
+    <bean id="webHelper" class="study.spring.SrpingHelper.Helper.WebHelper" scope="singleton">
+        <qualifier value="web" />
+        
+        <!-- 기본 인코딩 타입 설정 -->
+        <property name="encType" value="UTF-8" />
+        <!-- 업로드 된 결과물이 저장될 폴더 -->
+        <property name="uploadDir" value="{자신의 workspace 경로}/upload" />
+        <!-- 업로드 가능한 최대 용량 -->
+        <property name="maxFileSize" value="32 * 1024 * 1024" />
+        <!-- 쿠키에서 사용할 도메인 상용화시에 수정해야 함. 
+             사이트 주소가 "http://www.itpaper.co.kr"인 경우 ".itpaper.co.kr" -->
+        <property name="domain" value="localhost" />
+    </bean>
+    
+    <!-- DownloadHelper 싱글톤 객체 생성 -->
+    <bean id="downloadHelper" class="study.spring.SrpingHelper.Helper.DownloadHelper" scope="singleton">
+        <qualifier value="download" />
+        <property name="uploadDir" value="{자신의 workspace 경로}/upload" />
+    </bean>
+    
+    <!-- RegexHelper 싱글톤 객체 생성 -->
+    <bean id="regexHelper" class="study.spring.SrpingHelper.Helper.RegexHelper" scope="singleton">
+        <qualifier value="regex" />
+    </bean>
+    
+    <!-- RetrofitHelper 싱글톤 객체 생성 -->
+    <bean id="retrofitHelper" class="study.spring.SrpingHelper.Helper.RetrofitHelper" scope="singleton">
+        <qualifier value="retrofit" />
+    </bean>
+    
+    <!-- MailHelper의 생성자에게 전달할 설정 객체 정의 -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com" />
+        <property name="port" value="465" />
+        <property name="username" value="{자신의 Gmail 주소}" />
+        <property name="password" value="{자신의 Gmail 비밀번호}" />
+        <property name="defaultEncoding" value="UTF-8" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.debug">true</prop>
+                <prop key="mail.smtp.socketFactory.port">465</prop>
+                <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+                <prop key="mail.smtp.socketFactory.fallback">false</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <!-- MailHelper 싱글톤 객체 생성 -->
+    <bean id="mailHelper" class="study.spring.SrpingHelper.Helper.MailHelper" scope="singleton">
+        <qualifier value="mail" />
+        <constructor-arg ref="mailSender" />
+    </bean>
+    
+    <!-- MySQL 연결 설정 -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+        <property name="url" value="jdbc:log4jdbc:mysql://localhost:3306/{db이름}?characterEncoding=UTF8&amp;serverTimezone=UTC" />
+        <property name="username" value="{db계정}" />
+        <property name="password" value="{db비밀번호}" />
+    </bean>
+    
+    <!-- MyBatis SqlSessionFactory 객체 설정 : config.xml의 역할 수행 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- DB접속 정보를 미리 정의해둔 MySQL JDBC의 dataSource로 처리한다. -->
+        <property name="dataSource" ref="dataSource" />
+        <!-- Mapper의 경로를 설정한다. -->
+        <property name="mapperLocations" value="classpath:/mappers/**/*Mapper.xml" />
+    </bean>
+
+</beans>
