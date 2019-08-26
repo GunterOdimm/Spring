@@ -7,42 +7,44 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
     <!-- WebHelper 싱글톤 객체 생성 -->
-    <bean id="webHelper" class="study.spring.SrpingHelper.Helper.WebHelper" scope="singleton">
+    <bean id="webHelper" class="study.spring.SpringHelper.Helper.WebHelper" scope="singleton">
         <qualifier value="web" />
         
         <!-- 기본 인코딩 타입 설정 -->
         <property name="encType" value="UTF-8" />
         <!-- 업로드 된 결과물이 저장될 폴더 -->
-        <property name="uploadDir" value="{자신의 workspace 경로}/upload" />
+        <property name="uploadDir" value="D:\GunterOdimm\workspace-spring/upload" />
         <!-- 업로드 가능한 최대 용량 -->
-        <property name="maxFileSize" value="32 * 1024 * 1024" />
+        <property name="maxFileSize" value="33554432" />
         <!-- 쿠키에서 사용할 도메인 상용화시에 수정해야 함. 
              사이트 주소가 "http://www.itpaper.co.kr"인 경우 ".itpaper.co.kr" -->
         <property name="domain" value="localhost" />
     </bean>
     
     <!-- DownloadHelper 싱글톤 객체 생성 -->
-    <bean id="downloadHelper" class="study.spring.SrpingHelper.Helper.DownloadHelper" scope="singleton">
+    <bean id="downloadHelper" class="study.spring.SpringHelper.Helper.DownloadHelper" scope="singleton">
         <qualifier value="download" />
-        <property name="uploadDir" value="{자신의 workspace 경로}/upload" />
+        <property name="uploadDir" value="D:\GunterOdimm\workspace-spring/upload" />
     </bean>
     
     <!-- RegexHelper 싱글톤 객체 생성 -->
-    <bean id="regexHelper" class="study.spring.SrpingHelper.Helper.RegexHelper" scope="singleton">
+    <bean id="regexHelper" class="study.spring.SpringHelper.Helper.RegexHelper" scope="singleton">
         <qualifier value="regex" />
     </bean>
     
     <!-- RetrofitHelper 싱글톤 객체 생성 -->
-    <bean id="retrofitHelper" class="study.spring.SrpingHelper.Helper.RetrofitHelper" scope="singleton">
+    <bean id="retrofitHelper" class="study.spring.SpringHelper.Helper.RetrofitHelper" scope="singleton">
         <qualifier value="retrofit" />
     </bean>
+    
+    
     
     <!-- MailHelper의 생성자에게 전달할 설정 객체 정의 -->
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="smtp.gmail.com" />
         <property name="port" value="465" />
-        <property name="username" value="{자신의 Gmail 주소}" />
-        <property name="password" value="{자신의 Gmail 비밀번호}" />
+        <property name="username" value="dragonia1140@gmail.com" />
+        <property name="password" value="lbyippayexlsxrjw" />
         <property name="defaultEncoding" value="UTF-8" />
         <property name="javaMailProperties">
             <props>
@@ -57,7 +59,7 @@
     </bean>
     
     <!-- MailHelper 싱글톤 객체 생성 -->
-    <bean id="mailHelper" class="study.spring.SrpingHelper.Helper.MailHelper" scope="singleton">
+    <bean id="mailHelper" class="study.spring.SpringHelper.Helper.MailHelper" scope="singleton">
         <qualifier value="mail" />
         <constructor-arg ref="mailSender" />
     </bean>
@@ -65,9 +67,9 @@
     <!-- MySQL 연결 설정 -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
-        <property name="url" value="jdbc:log4jdbc:mysql://localhost:3306/{db이름}?characterEncoding=UTF8&amp;serverTimezone=UTC" />
-        <property name="username" value="{db계정}" />
-        <property name="password" value="{db비밀번호}" />
+        <property name="url" value="jdbc:log4jdbc:mysql://localhost:3306/myschool?characterEncoding=UTF8&amp;serverTimezone=UTC" />
+        <property name="username" value="root" />
+        <property name="password" value="123qwe!@#" />
     </bean>
     
     <!-- MyBatis SqlSessionFactory 객체 설정 : config.xml의 역할 수행 -->

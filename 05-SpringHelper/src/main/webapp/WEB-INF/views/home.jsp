@@ -10,9 +10,15 @@
 </head>
 <body>
 <h1>
-	Hello world!  
+	스프링 헬퍼!!
 </h1>
 
-<P>  The time on the server is ${serverTime}. </P>
+<P> 실행하고 싶은 헬퍼를 클릭하세Yo!! </P>
+<div style="border: 4px dashed #bcbcbc; width:300;">
+<button type="button" onclick="location.href='mail/write.do'" style="margin-left:40%";>메일쓰기</button>
+</div>
+<div style="border: 4px dashed #bcbcbc; width:300;">
+<button type="button" onclick="location.href='retrofit/daily_box_office_graph.do'" style="margin-left:40%";>박스오피스 연동</button>
+</div>
 </body>
 </html>
