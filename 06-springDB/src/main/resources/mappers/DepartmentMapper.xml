@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DepartmentMapper">
+    <!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+    <resultMap id="department" type="study.spring.springDB.model.Department">
+        <!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+        <result property="deptno" column="deptno" />
+        <result property="dname" column="dname" />
+        <result property="loc" column="loc" />
+    </resultMap>
+    <!-- 단일행 조회를 위한 기능 정의 -->
+    <select id="selectItem" 
+            parameterType="study.spring.springDB.model.Department" 
+            resultMap="department">
+            SELECT deptno, dname, loc FROM department WhERE deptno =#{deptno};
+        <!-- "#{변수명}" 으로 표시된 곳에 멤버변수가 치환된다. -->
+    </select>
+    <!-- 다중행 조회를 위한 기능 정의 -->
+	<select id="selectList"
+		parameterType="study.spring.springDB.model.Department"
+		resultMap="department">
+		SELECT deptno, dname, loc FROM department
+		<where>
+			<if test="dname != null and dname != ''">
+				dname LIKE concat('%', #{dname}, '%')
+			</if>
+
+			<if test="loc != null and loc != ''">
+				OR loc LIKE concat('%', #{loc}, '%')
+			</if>
+		</where>
+		ORDER BY deptno DESC
+		<if test = "listCount > 0">
+			LIMIT #{offset}, #{listCount}
+		</if>
+		<!-- 컬럼이 아니라 파라미터로 전달되는 JavaBeans의 맴버변수이름이 
+			 변수 이름을 통해서 getter가 호출되는것
+		 -->
+		<!--
+	    	mapper에 나오는 where절에서 if문에 들어가는 변수명은
+			컬럼이 아니라 파라미터로 전달되는 JavaBeans의 맴버변수이름이 
+			변수 이름을 통해서 getter가 호출되는것
+			
+			또한 sql문에서 있는 변수명은 JavaBeans의 맴버변수 이름을 통해서 getter를 호출함
+			SQLInjection 방어처리를 위해서 변수랎에 홑따옴표가 적용된다.
+			이는 문법에러인데 이형상을 방지하기 위해서 concat()함수로 묶어버린다
+			sql에서 concat은 문자열 연결함수로 =>MyBatis의 문법에러를 회피할 수 있다.
+			물론 $를 사용할수 있는데 이는 보안에 안좋다. 
+		-->
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+	</select>
+    <!-- 데이터 수 조회를 위한 기능 정의 -->
+	<select id="selectCount"
+		parameterType="study.spring.springDB.model.Department" 
+		resultType="int">
+		SELECT COUNT(*) FROM department
+ 		<where>
+			<if test="dname != null and dname != ''">
+				dname LIKE concat('%', #{dname}, '%')
+			</if>
+
+			<if test="loc != null and loc != ''">
+				OR loc LIKE concat('%', #{loc}, '%')
+			</if>
+		</where>
+		ORDER BY deptno DESC
+        <!-- 이 안에서 처리할 SQL문을 명시한다. -->
+    </select>
+    <!-- 데이터 저장을 위한 기능 정의 -->
+    <insert id="insertItem" 
+            parameterType="study.spring.springDB.model.Department" 
+            useGeneratedKeys="true"
+            keyProperty="deptno">
+            INSERT INTO department (dname, loc) VALUES (#{dname}, #{loc});
+        <!-- "#{변수명}" 으로 표시된 곳에 Beans의 멤버변수가 치환된다. -->
+    </insert>
+    <!-- 데이터 삭제를 위한 기능 정의 -->
+    <delete id="deleteItem" parameterType="study.spring.springDB.model.Department">
+    	DELETE FROM department WHERE deptno=#{deptno};
+        <!-- 이 안에서 처리할 SQL문을 명시한다. -->
+    </delete>
+    <!-- 데이터 갱신을 위한 기능 정의 -->
+    <update id="updateItem" parameterType="study.spring.springDB.model.Department">
+        UPDATE department SET dname=#{dname}, loc=#{loc} WHERE deptno=#{deptno};
+        <!-- 이 안에서 처리할 SQL문을 명시한다. -->
+    </update>
+
+</mapper>

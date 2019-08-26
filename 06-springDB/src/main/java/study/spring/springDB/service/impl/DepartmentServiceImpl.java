@@ -38,11 +38,9 @@ public class DepartmentServiceImpl implements DepartmentService{
                 throw new NullPointerException("result=null");
             }
         } catch (NullPointerException e) {
-            sqlSession.rollback();
             log.error(e.getLocalizedMessage());
             throw new Exception("조회된 데이터가 없습니다.");
         } catch (Exception e) {
-            sqlSession.rollback();
             log.error(e.getLocalizedMessage());
             throw new Exception("데이터 조회에 실패했습니다.");
         }

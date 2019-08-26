@@ -2,4 +2,5 @@
 <aop-reference-model>
 <aop-project name="simplespring"/>
 <aop-project name="05-SpringHelper"/>
+<aop-project name="06-springDB"/>
 </aop-reference-model>
