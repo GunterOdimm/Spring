@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="StudentMapper">
+    <!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+    <resultMap id="student" type="study.spring.json.model.Student">
+        <!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+        <result property="studno" column="studno" />
+        <result property="name" column="name" />
+        <result property="userid" column="userid" />
+        <result property="grade" column="grade" />
+        <result property="idnum" column="idnum" />
+        <result property="birthdate" column="birthdate" />
+        <result property="tel" column="tel" />
+        <result property="height" column="height" />
+        <result property="weight" column="weight" />
+        <result property="deptno" column="deptno" />
+        <result property="profno" column="profno" />
+
+    </resultMap>
+    
+    <!-- 단일행 조회를 위한 기능 정의 -->
+    <select id="selectItem" 
+            parameterType="study.spring.json.model.Student" 
+            resultMap="student">
+            SELECT studno, name, userid, grade, idnum, birthdate, tel, height, weight, deptno, profno FROM student WhERE studno =#{studno};
+        <!-- "#{변수명}" 으로 표시된 곳에 멤버변수가 치환된다. -->
+    </select>
+    
+    <!-- 다중행 조회를 위한 기능 정의 -->
+    <select id="selectList" 
+            parameterType="study.spring.json.model.Student" 
+            resultMap="student">
+            SELECT studno, name, userid, grade, idnum, birthdate, tel, height, weight, deptno, profno FROM student
+        	<where>
+			<if test="name != null and name != ''">
+				name LIKE concat('%', #{name}, '%')
+			</if>
+
+			<if test="userid != null and userid != ''">
+				OR userid LIKE concat('%', #{userid}, '%')
+			</if>
+		</where>
+		ORDER BY studno DESC
+		<if test = "listCount > 0">
+			LIMIT #{offset}, #{listCount}
+		</if><!--  이 부분이 검색하면  그부분만 나오게 하는 코드-->
+        	
+        <!-- 이 안에서 처리할 SQL문을 명시한다. -->
+    </select>
+    
+    <!-- 데이터 수 조회를 위한 기능 정의 -->
+    <select id="selectCount" 
+            parameterType="study.spring.json.model.Student" 
+            resultType="int">
+            SELECT COUNT(*) FROM student
+        <!-- 이 안에서 처리할 SQL문을 명시한다. -->
+    </select>
+    
+    <!-- 데이터 저장을 위한 기능 정의 -->
+    <insert id="insertItem" 
+            parameterType="study.spring.json.model.Student" 
+            useGeneratedKeys="true"
+            keyProperty="studno">
+            INSERT INTO student (name, userid, grade, idnum, birthdate, tel, height, weight, deptno, profno) VALUES (#{name}, #{userid}, #{grade}, #{idnum}, #{birthdate}, #{tel}, #{height}, #{weight}, #{deptno}, #{profno});
+        <!-- "#{변수명}" 으로 표시된 곳에 Beans의 멤버변수가 치환된다. -->
+    </insert>
+    
+    <!-- 데이터 삭제를 위한 기능 정의 -->
+    <delete id="deleteItem" parameterType="study.spring.json.model.Student">
+    	DELETE FROM student WHERE studno=#{studno};
+        <!-- 이 안에서 처리할 SQL문을 명시한다. -->
+    </delete>
+    
+    <!-- 데이터 갱신을 위한 기능 정의 -->
+    <update id="updateItem" parameterType="study.spring.json.model.Student">
+    	UPDATE student SET name=#{name}, userid=#{userid}, idnum=#{idnum}, birthdate=#{birthdate}, tel=#{tel} WHERE studno=#{studno};
+        <!-- 이 안에서 처리할 SQL문을 명시한다. -->
+    </update>
+ 
+    
+</mapper>

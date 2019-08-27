@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context" xmlns:cache="http://www.springframework.org/schema/cache" xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring" xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util" xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.3.xsd
+        http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+    <!-- 프로그램 구동에 필요한 환경설정 값 -->
+    <util:properties id="config">
+        <!-- 기본 인코딩 타입 -->
+        <prop key="encType">UTF-8</prop>
+        <!-- 업로드 디렉토리 -->
+        <prop key="uploadDir">D:\GunterOdimm\workspace-spring/upload</prop>
+        <!-- 최대 업로드 가능 용량 -->
+        <prop key="uploadMaxFileSize">33554432</prop>
+        <!-- 기본 도메인(쿠키설정용) -->
+        <prop key="domain">localhost</prop>
+        <!-- 메일발송 서버 주소 -->
+        <prop key="smtpHost">smtp.gmail.com</prop>
+        <!-- 메일발송 서버 포트 -->
+        <prop key="smtpPort">465</prop>
+        <!-- 메일발송 서버 계정 -->
+        <prop key="smtpUsername">dragonia1140@gmail.com</prop>
+        <!-- 메일발송 서버 비밀번호 -->
+        <prop key="smtpPassword">lbyippayexlsxrjw</prop>
+        <!-- 데이터베이스 호스트 이름 -->
+        <prop key="dbHost">localhost</prop>
+        <!-- 데이터베이스 포트번호 -->
+        <prop key="dbPort">3306</prop>
+        <!-- 데이터베이스 이름 -->
+        <prop key="dbName">myschool</prop>
+        <!-- 데이터베이스 문자셋 -->
+        <prop key="dbCharset">utf-8</prop>
+        <!-- 데이터베이스 계정명 -->
+        <prop key="dbUsername">root</prop>
+        <!-- 데이터베이스 비밀번호 -->
+        <prop key="dbPassword">123qwe!@#</prop>
+    </util:properties>
+
+    <bean id="webHelper" class="study.spring.json.helper.WebHelper" scope="singleton">
+        <qualifier value="web" />
+        <property name="encType" value="#{config['encType']}" />
+        <property name="uploadDir" value="#{config['uploadDir']}" />
+        <property name="maxFileSize">
+            <value type="java.lang.Long">
+                #{config['uploadMaxFileSize']}
+            </value>
+        </property>
+        <property name="domain" value="#{config['domain']}" />
+    </bean>
+    
+    <bean id="downloadHelper" class="study.spring.json.helper.DownloadHelper" scope="singleton">
+        <qualifier value="download" />
+        <property name="uploadDir" value="#{config['uploadDir']}" />
+    </bean>
+    
+    <bean id="regexHelper" class="study.spring.json.helper.RegexHelper" scope="singleton">
+        <qualifier value="regex" />
+    </bean>
+    
+    <bean id="retrofitHelper" class="study.spring.json.helper.RetrofitHelper" scope="singleton">
+        <qualifier value="retrofit" />
+    </bean>
+    
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="#{config['smtpHost']}" />
+        <property name="port" value="#{config['smtpPort']}" />
+        <property name="username" value="#{config['smtpUsername']}" />
+        <property name="password" value="#{config['smtpPassword']}" />
+        <property name="defaultEncoding" value="UTF-8" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.debug">true</prop>
+                <prop key="mail.smtp.socketFactory.port">#{config['smtpPort']}</prop>
+                <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+                <prop key="mail.smtp.socketFactory.fallback">false</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="mailHelper" class="study.spring.json.helper.MailHelper" scope="singleton">
+        <qualifier value="mail" />
+        <constructor-arg ref="mailSender" />
+    </bean>
+    
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+        <property name="url" value="jdbc:log4jdbc:mysql://#{config['dbHost']}:#{config['dbPort']}/#{config['dbName']}?characterEncoding=#{config['dbCharset']}&amp;serverTimezone=UTC" />
+        <property name="username" value="#{config['dbUsername']}" />
+        <property name="password" value="#{config['dbPassword']}" />
+    </bean>
+    
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="mapperLocations" value="classpath:/mappers/**/*Mapper.xml" />
+    </bean>
+
+    <!-- sqlSession 객체 생성 -->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+</beans>
