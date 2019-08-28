@@ -1,15 +1,5 @@
 INDEX VERSION 1.4+D:\GunterOdimm\workspace-spring\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-413016454.index
-1384603171.index
-356529567.index
-27493480.index
-2145404371.index
-1626129607.index
-2525677710.index
-2892823271.index
-4198761971.index
-1675563160.index
-1788251915.index
+2821897277.index
 3458121204.index
-365619879.index
-2525677710.index
+2863654453.index
+4199714751.index

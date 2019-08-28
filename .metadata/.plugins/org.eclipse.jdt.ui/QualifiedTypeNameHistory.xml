@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="study.spring.hellospring.vo.Calc3"/>
-<fullyQualifiedTypeName name="study.spring.hellospring.vo.Calc4"/>
-<fullyQualifiedTypeName name="study.spring.hellospring.controller.SchoolController"/>
-<fullyQualifiedTypeName name="study.spring.hellospring.service.impl.studentServiceimpl"/>
 <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Qualifier"/>
 <fullyQualifiedTypeName name="study.spring.hellospring.service.impl.professorServiceimpl"/>
 <fullyQualifiedTypeName name="study.spring.hellospring.service.SchoolService"/>
@@ -52,12 +48,16 @@
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
 <fullyQualifiedTypeName name="uap_clj.java.api.OS"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
-<fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
-<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-<fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
-<fullyQualifiedTypeName name="lombok.Value"/>
 <fullyQualifiedTypeName name="study.spring.springDB.helper.WebHelper"/>
 <fullyQualifiedTypeName name="study.spring.springDB.model.Department"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="study.spring.springDB.helper.PageData"/>
+<fullyQualifiedTypeName name="lombok.Value"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
+<fullyQualifiedTypeName name="study.spring.json.service.StudentService"/>
+<fullyQualifiedTypeName name="study.spring.json.model.Student"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+<fullyQualifiedTypeName name="study.spring.json.helper.WebHelper"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
 </qualifiedTypeNameHistroy>

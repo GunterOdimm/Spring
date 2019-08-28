@@ -15,9 +15,7 @@
 
 <P>  The time on the server is ${serverTime}. </P>
 
-<button type="button" onclick="location.href='department/view.do'">학과보기</button>
-<button type="button" onclick="location.href='department/add.do'">학과추가</button>
-<button type="button" onclick="location.href='department/edit.do'">학과수정</button>
+<button type="button" onclick="location.href='upload/upload.do'">이미지업로드</button>
 <button type="button" onclick="location.href='department/list.do'">학과리스트</button>
 <hr/>
 

@@ -511,7 +511,7 @@ public class WebHelper {
 	                // 최종적으로 생성된 경로에서 업로드 폴더까지의 경로를 제거한다.
 	                // ex) D:/jsp/upload/2234234435.jpg --> /2234234435.jpg
 	                filePath = filePath.replace("\\", "/").replace(this.uploadDir, "");
-
+	               
 	                /** 4) 파일 정보 분류 처리 */
 	                // 생성된 정보를 Beans의 객체로 설정해서 컬렉션에 저장한다.
 	                // --> 이 정보는 추후 파일의 업로드 내역을 DB에 저장할 때 사용된다.
@@ -581,47 +581,41 @@ public class WebHelper {
 	        return builder.toString();
 	    }
 
-	public void printJson(String rt, Map<String, Object> data) {
-		this.response.setContentType("application/json");
+		public Map<String, Object> getJsonData(String rt, Map<String, Object> data) {
+			this.response.setContentType("application/json");
 
-		Calendar c = Calendar.getInstance();
-		String pubDate = String.format("%04d-%02d-%02d %02d:%02d:%02d", c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1,
-				c.get(Calendar.DAY_OF_MONTH), c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE),
-				c.get(Calendar.SECOND));
+			Calendar c = Calendar.getInstance();
+			String pubDate = String.format("%04d-%02d-%02d %02d:%02d:%02d", c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1,
+					c.get(Calendar.DAY_OF_MONTH), c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE),
+					c.get(Calendar.SECOND));
 
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("rt", rt);
-		map.put("pubDate", pubDate);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("rt", rt);
+			map.put("pubDate", pubDate);
 
-		if (data != null) {
-			map.putAll(data);
+			if (data != null) {
+				map.putAll(data);
+			}
+
+			//Gson gson = new Gson();
+			//String json = gson.toJson(map);
+			//try {
+			//	PrintWriter out = this.response.getWriter();
+			//	out.print(json);
+			//} catch (Exception e) {
+			//	logger.error(e.getLocalizedMessage());
+			//}
+			return map;
+		}
+		public Map<String, Object> getJsonData(String rt) {
+			return this.getJsonData(rt, null);
+		}
+		
+		public Map<String, Object> getJsonData(Map<String, Object> data) {
+			return this.getJsonData("OK", data);
 		}
 
-		Gson gson = new Gson();
-		String json = gson.toJson(map);
-		try {
-			PrintWriter out = this.response.getWriter();
-			out.print(json);
-		} catch (Exception e) {
-			logger.error(e.getLocalizedMessage());
-		}
 
-	}
-
-	/**
-	 * 오직 성공일 경우에 리턴한다.
-	 * @param data
-	 */
-	public void printJson(Map<String, Object> data) {
-		this.printJson("OK",data);
-	}
-	/**
-	 * 
-	 * @param rt
-	 */
-	public void printJson(String rt) {
-		this.printJson(rt,null);
-	}
 
 	public String getEncType() {
 		return encType;
@@ -672,4 +666,5 @@ public class WebHelper {
 		};
 		return new ModelAndView(view);
 	}
+
 }

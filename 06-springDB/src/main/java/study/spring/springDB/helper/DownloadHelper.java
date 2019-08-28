@@ -12,6 +12,9 @@ import java.net.URLEncoder;
 import javax.activation.MimetypesFileTypeMap;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.Thumbnails.Builder;
@@ -32,9 +35,15 @@ public class DownloadHelper {
 	 * @param orginName - 원본 파일 이름
 	 * @throws IOException
 	 */
-	public void download(HttpServletResponse response, String filePath, String orginName) throws Exception {
+	public void download(String filePath, String orginName) throws Exception {
 		log.debug(String.format("[Download] filePath: %s", filePath));
 		log.debug(String.format("[Download] orginName: %s", orginName));
+		
+		ServletRequestAttributes requestAttr = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+		
+		// JSP 내장객체 참조하기 --> getInstance()에 전달된 객체
+		HttpServletResponse reponse = requestAttr.getResponse();
+
 		
 		/** 파일의 존재여부를 확인하고 파일의 정보 추출하기 */
 		// --> import java.io.File;
@@ -62,18 +71,18 @@ public class DownloadHelper {
 
 		/** 브라우저에게 이 메서드를 호출하는 페이지의 형식을 일반 파일로 인식시키기 위한 처리 */
 		// 다른 데이터와 섞이지 않도록 응답객체(response)를 리셋한다.
-		response.reset();
+		reponse.reset();
 
 		// 파일형식 정보 설정
-		response.setHeader("Content-Type", fileType + "; charset=UTF-8");
+		reponse.setHeader("Content-Type", fileType + "; charset=UTF-8");
 
 		// 파일의 이름 설정 (인코딩 필요함)
 		// --> import java.net.URLEncoder;
 		String encFileName = URLEncoder.encode(orginName, "UTF-8");
-		response.setHeader("Content-Disposition", "attachment; filename=" + encFileName + ";");
+		reponse.setHeader("Content-Disposition", "attachment; filename=" + encFileName + ";");
 
 		// 파일의 용량 설정
-		response.setContentLength((int) size);
+		reponse.setContentLength((int) size);
 
 		/** 스트림을 통한 파일의 바이너리 읽기 */
 		// 파일 읽기와 출력을 위한 스트림을 생성한다.
@@ -87,7 +96,7 @@ public class DownloadHelper {
 
 		// BufferedInputStream을 통해 읽어들인 데이터를 출력하기 위해 사용되는 클래스
 		// --> import java.io.BufferedOutputStream;
-		BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
+		BufferedOutputStream bos = new BufferedOutputStream(reponse.getOutputStream());
 
 		// 업로드 된 파일의 용량에 상관없이 1kbyte 크기의 배열 공간을 생성한다.
 		byte[] buffer = new byte[1024];
@@ -129,7 +138,7 @@ public class DownloadHelper {
 	 * @param height   - 세로 크기
 	 * @throws IOException
 	 */
-	public void download(HttpServletResponse response, String filePath, int width, int height, boolean crop) throws Exception {
+	public void download(String filePath, int width, int height, boolean crop) throws Exception {
 
 		// 썸네일을 생성하고 경로를 리턴받는다.
 		String thumbPath = this.createThumbnail(filePath, width, height, crop);
@@ -138,7 +147,7 @@ public class DownloadHelper {
 		// --> 이 메서드를 호출하기 위해서 try~catch가 요구되지만,
 		// 현재 메서드 역시 throws를 명시했기 때문에
 		// 예외처리가 현재 메서드를 호출하는 곳으로 이관된다.
-		this.download(response, thumbPath, null);
+		this.download(thumbPath, null);
 	}
 
 	/**

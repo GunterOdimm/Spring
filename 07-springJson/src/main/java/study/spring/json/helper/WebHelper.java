@@ -581,33 +581,32 @@ public class WebHelper {
 	        return builder.toString();
 	    }
 
-	public void printJson(String rt, Map<String, Object> data) {
-		this.response.setContentType("application/json");
+		public void printJson(String rt, Map<String, Object> data) {
+			this.response.setContentType("application/json");
 
-		Calendar c = Calendar.getInstance();
-		String pubDate = String.format("%04d-%02d-%02d %02d:%02d:%02d", c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1,
-				c.get(Calendar.DAY_OF_MONTH), c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE),
-				c.get(Calendar.SECOND));
+			Calendar c = Calendar.getInstance();
+			String pubDate = String.format("%04d-%02d-%02d %02d:%02d:%02d", c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1,
+					c.get(Calendar.DAY_OF_MONTH), c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE),
+					c.get(Calendar.SECOND));
 
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("rt", rt);
-		map.put("pubDate", pubDate);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("rt", rt);
+			map.put("pubDate", pubDate);
 
-		if (data != null) {
-			map.putAll(data);
+			if (data != null) {
+				map.putAll(data);
+			}
+
+			Gson gson = new Gson();
+			String json = gson.toJson(map);
+			try {
+				PrintWriter out = this.response.getWriter();
+				out.print(json);
+			} catch (Exception e) {
+				logger.error(e.getLocalizedMessage());
+			}
+
 		}
-
-		Gson gson = new Gson();
-		String json = gson.toJson(map);
-		try {
-			PrintWriter out = this.response.getWriter();
-			out.print(json);
-		} catch (Exception e) {
-			logger.error(e.getLocalizedMessage());
-		}
-
-	}
-
 	/**
 	 * 오직 성공일 경우에 리턴한다.
 	 * @param data

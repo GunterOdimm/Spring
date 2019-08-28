@@ -23,6 +23,8 @@ D:\GunterOdimm\workspace-spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jsps
 \05-SpringHelper\src\main\java
 D:\GunterOdimm\workspace-spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\349287784.index
 \simplespring\src\main\java
+D:\GunterOdimm\workspace-spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2821897277.index
+\08-ajax\src
 D:\GunterOdimm\workspace-spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2484726224.index
 \model2\src
 D:\GunterOdimm\workspace-spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2958262006.index
@@ -41,6 +43,8 @@ D:\GunterOdimm\workspace-spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jsps
 \simplespring\src\main\java
 D:\GunterOdimm\workspace-spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2145404371.index
 \07-springJson\src\main\java
+D:\GunterOdimm\workspace-spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2575892540.index
+\06-springDB\src\main\java
 D:\GunterOdimm\workspace-spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\27493480.index
 \07-springJson\src\main\java
 D:\GunterOdimm\workspace-spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3425035172.index

@@ -12,7 +12,7 @@
         <!-- 기본 인코딩 타입 -->
         <prop key="encType">UTF-8</prop>
         <!-- 업로드 디렉토리 -->
-        <prop key="uploadDir">D:\GunterOdimm\workspace-spring/upload</prop>
+        <prop key="uploadDir">D:/GunterOdimm/workspace-spring/upload</prop>
         <!-- 최대 업로드 가능 용량 -->
         <prop key="uploadMaxFileSize">33554432</prop>
         <!-- 기본 도메인(쿠키설정용) -->
