@@ -1,8 +1,8 @@
-2019-08-28 09:56:28,376  INFO [org.springframework.web.context.ContextLoader] Root WebApplicationContext: initialization started
-2019-08-28 09:56:28,413  INFO [org.springframework.core.KotlinDetector] Kotlin reflection implementation not found at runtime, related features won't be available.
-2019-08-28 09:56:28,604 DEBUG [org.springframework.ui.context.support.UiApplicationContextUtils] Unable to locate ThemeSource with name 'themeSource': using default [org.springframework.ui.context.support.ResourceBundleThemeSource@103999dd]
-2019-08-28 09:56:28,793 DEBUG [org.springframework.jdbc.datasource.DriverManagerDataSource] Loaded JDBC driver: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-2019-08-28 09:56:28,979  INFO [org.springframework.web.context.ContextLoader] Root WebApplicationContext initialized in 595 ms
-2019-08-28 09:56:29,010  INFO [org.springframework.web.servlet.DispatcherServlet] Initializing Servlet 'appServlet'
-2019-08-28 09:56:29,224 DEBUG [org.springframework.ui.context.support.UiApplicationContextUtils] Unable to locate ThemeSource with name 'themeSource': using default [org.springframework.ui.context.support.DelegatingThemeSource@4082831f]
-2019-08-28 09:56:29,624  INFO [org.springframework.web.servlet.DispatcherServlet] Completed initialization in 614 ms
+2019-08-29 11:30:57,189  INFO [org.springframework.web.context.ContextLoader] Root WebApplicationContext: initialization started
+2019-08-29 11:30:57,225  INFO [org.springframework.core.KotlinDetector] Kotlin reflection implementation not found at runtime, related features won't be available.
+2019-08-29 11:30:57,416 DEBUG [org.springframework.ui.context.support.UiApplicationContextUtils] Unable to locate ThemeSource with name 'themeSource': using default [org.springframework.ui.context.support.ResourceBundleThemeSource@357011b]
+2019-08-29 11:30:57,599 DEBUG [org.springframework.jdbc.datasource.DriverManagerDataSource] Loaded JDBC driver: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+2019-08-29 11:30:57,779  INFO [org.springframework.web.context.ContextLoader] Root WebApplicationContext initialized in 582 ms
+2019-08-29 11:30:57,802  INFO [org.springframework.web.servlet.DispatcherServlet] Initializing Servlet 'appServlet'
+2019-08-29 11:30:58,009 DEBUG [org.springframework.ui.context.support.UiApplicationContextUtils] Unable to locate ThemeSource with name 'themeSource': using default [org.springframework.ui.context.support.DelegatingThemeSource@30695980]
+2019-08-29 11:30:58,313  INFO [org.springframework.web.servlet.DispatcherServlet] Completed initialization in 509 ms

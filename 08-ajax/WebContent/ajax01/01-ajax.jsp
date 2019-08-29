@@ -23,7 +23,7 @@
 			$("#mybutton").click(function(e){
 				$.ajax({
 					cache: false,
-					url:'../api/hello.html',//이경우 hello가 html 이라 html jsp도 읽어오는데 문제 없음
+					url:'../api/hello.html', //이경우 hello가 html 이라 html jsp도 읽어오는데 문제 없음
 					method: 'get',
 					data:{},
 					dataType:'html',

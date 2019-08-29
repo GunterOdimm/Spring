@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Qualifier"/>
-<fullyQualifiedTypeName name="study.spring.hellospring.service.impl.professorServiceimpl"/>
-<fullyQualifiedTypeName name="study.spring.hellospring.service.SchoolService"/>
-<fullyQualifiedTypeName name="com.sun.javafx.collections.MappingChange.Map"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
-<fullyQualifiedTypeName name="lombok.extern.slf4j.Slf4j"/>
 <fullyQualifiedTypeName name="javax.mail.internet.InternetAddress"/>
 <fullyQualifiedTypeName name="org.springframework.mail.javamail.MimeMessageHelper"/>
 <fullyQualifiedTypeName name="org.springframework.mail.javamail.JavaMailSender"/>
@@ -15,7 +9,6 @@
 <fullyQualifiedTypeName name="org.springframework.web.context.request.RequestContextHolder"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="java.lang.Override"/>
-<fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
 <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 <fullyQualifiedTypeName name="com.sun.glass.ui.View"/>
 <fullyQualifiedTypeName name="org.springframework.web.servlet.view.AbstractView"/>
@@ -26,10 +19,6 @@
 <fullyQualifiedTypeName name="retrofit2.Retrofit"/>
 <fullyQualifiedTypeName name="retrofit2.http.GET"/>
 <fullyQualifiedTypeName name="retrofit2.http.Query"/>
-<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
-<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMethod"/>
-<fullyQualifiedTypeName name="org.springframework.ui.Model"/>
-<fullyQualifiedTypeName name="org.springframework.web.servlet.ModelAndView"/>
 <fullyQualifiedTypeName name="java.util.Calendar"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 <fullyQualifiedTypeName name="study.srpting.SpringHelper.service.KobisService"/>
@@ -47,17 +36,28 @@
 <fullyQualifiedTypeName name="study.spring.SpringHelper.model.SearchDailyboxOfficeList"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
 <fullyQualifiedTypeName name="uap_clj.java.api.OS"/>
-<fullyQualifiedTypeName name="java.util.Map"/>
-<fullyQualifiedTypeName name="study.spring.springDB.helper.WebHelper"/>
 <fullyQualifiedTypeName name="study.spring.springDB.model.Department"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="study.spring.springDB.helper.PageData"/>
 <fullyQualifiedTypeName name="lombok.Value"/>
 <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
 <fullyQualifiedTypeName name="study.spring.json.service.StudentService"/>
 <fullyQualifiedTypeName name="study.spring.json.model.Student"/>
-<fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
 <fullyQualifiedTypeName name="study.spring.json.helper.WebHelper"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
+<fullyQualifiedTypeName name="com.sun.javafx.collections.MappingChange.Map"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
 <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="study.spring.springDB.helper.DownloadHelper"/>
+<fullyQualifiedTypeName name="study.spring.springDB.helper.WebHelper"/>
+<fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMethod"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+<fullyQualifiedTypeName name="org.springframework.web.servlet.ModelAndView"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="study.spring.springDB.helper.UploadItem"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
 </qualifiedTypeNameHistroy>

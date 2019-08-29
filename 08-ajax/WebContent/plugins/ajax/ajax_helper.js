@@ -4,7 +4,7 @@ $(function() {
 	loader.hide();
 	$("body").prepend(loader);
 
-	$.ajaxSetup( {
+	$.ajaxSetup( {				// ajax 에서 공통으로 사용하는 코드 일괄 처리
 		/** ajax 기본 옵션 */
 		cache: false,			// 캐쉬 사용 금지 처리
 		dataType: 'json',		// 읽어올 내용 형식 (html,xml,json)
