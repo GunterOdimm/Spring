@@ -4,7 +4,7 @@ $(function() {
 	loader.hide();
 	$("body").prepend(loader);
 
-	$.ajaxSetup( {				// ajax 에서 공통으로 사용하는 코드 일괄 처리
+	$.ajaxSetup( {
 		/** ajax 기본 옵션 */
 		cache: false,			// 캐쉬 사용 금지 처리
 		dataType: 'json',		// 읽어올 내용 형식 (html,xml,json)
@@ -48,6 +48,7 @@ $(function() {
 // HTML 특수문자를 원래의 구문으로 되돌리는 함수.
 function htmlspecialchar_decode(content) {
 	// 임의의 HTML 태그를 생성하여 내용을 출력시킨다.
+	// --> append 등의 출력 처리를 하지 않았으므로 화면에 표시되지는 않는
 	var div = $("<div>").html(content);
 	// 브라우저에 표시될 내용을 리턴한다.
 	return div.text();

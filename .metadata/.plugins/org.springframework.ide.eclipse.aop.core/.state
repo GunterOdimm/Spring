@@ -1,5 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<aop-reference-model>
-<aop-project name="06-springDB"/>
-<aop-project name="07-springJson"/>
-</aop-reference-model>
+<aop-reference-model/>
